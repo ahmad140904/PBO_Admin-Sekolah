@@ -10,7 +10,6 @@ cursor = db.cursor(dictionary=True)
 
 class Sekolah:
     def tambah_siswa(self, nis, nama_siswa, nama_kelas, alamat):
-        # Tambahkan siswa ke dalam tabel
         query = "INSERT INTO kelas(NIS, Nama_Siswa, Kelas, Alamat) VALUES(%s, %s, %s, %s)"
         nilai = (nis, nama_siswa, nama_kelas, alamat)
         cursor.execute(query, nilai)
@@ -18,7 +17,6 @@ class Sekolah:
         print("SISWA BERHASIL DI TAMBAHKAN")
 
     def tampilkan_siswa(self):
-        # Ambil daftar kelas yang ada
         cursor.execute("SELECT DISTINCT Kelas FROM kelas")
         kelas_list = [kelas['Kelas'] for kelas in cursor.fetchall()]
 
@@ -40,7 +38,6 @@ class Sekolah:
                 print("Pilihan tidak valid. Silakan coba lagi.")
 
     def __tampilkan_siswa_kelas(self, kelas):
-        # Ambil siswa berdasarkan kelas 
         cursor.execute(f"SELECT * FROM kelas WHERE Kelas = '{kelas}'")
         hasil = cursor.fetchall()
 
@@ -54,7 +51,6 @@ class Sekolah:
         print(f"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
     def tampilkan_jumlah_siswa(self):
-        # Ambil dan tampilkan jumlah siswa di setiap kelas
         cursor.execute("SELECT Kelas, COUNT(*) as Jumlah_Siswa FROM kelas GROUP BY Kelas")
         hasil = cursor.fetchall()
 
@@ -92,7 +88,6 @@ class Sekolah:
             print("4. Update Alamat Siswa")
             print("5. Hapus Siswa")
             print("0. Keluar")
-
             pilihan = int(input("Silahkan pilih menu: "))
 
             if pilihan == 1:
